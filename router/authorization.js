@@ -180,7 +180,7 @@ router.post("/addOrder", async (req, res) => {
       orderStatus,
       orderid,
     });
-    return res.status(200).json("200");
+    return res.status(200).json(orderid);
   } catch (err) {
     return res.status(404).json("404");
   }
@@ -188,7 +188,7 @@ router.post("/addOrder", async (req, res) => {
 
 router.get("/showorders", async (req, res) => {
   try {
-    const orders = await Order.find();
+    const orders = await Order.find().sort({orderDate:-1});
     res.send(JSON.stringify(orders));
   } catch (err) {
     console.log(err);
